@@ -19,9 +19,16 @@ export default function ListaEjerciciosScreen({ route, navigation }) {
   useEffect(() => {
     const fetchExercises = async () => {
       try {
-        const response = await api.get("/exercises/category", {
-          params: { category: tipo },
-        });
+        let response;
+        if (tipo === "Favoritos") {
+          // Llamada al endpoint de favoritos
+          response = await api.get("/exercises/favorites");
+        } else {
+          // Llamada al endpoint de categoría
+          response = await api.get("/exercises/category", {
+            params: { category: tipo },
+          });
+        }
         setExercises(response.data || []); // Aseguramos que sea un array
       } catch (error) {
         console.error("Error al obtener ejercicios:", error);
@@ -47,9 +54,7 @@ export default function ListaEjerciciosScreen({ route, navigation }) {
     >
       <Image
         source={{
-          uri:
-            item.image ||
-            "https://i.pinimg.com/474x/da/04/7a/da047adffeab3d7eaaf80ff55356f144.jpg",
+          uri: item.imageUrl || "https://via.placeholder.com/150", // Usar el campo imageUrl del backend
         }}
         style={styles.exerciseImage}
       />

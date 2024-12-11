@@ -10,7 +10,6 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import colors from "../utils/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 export default function CalmaAhoraScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safeContainer}>
@@ -33,7 +32,7 @@ export default function CalmaAhoraScreen({ navigation }) {
           <TouchableOpacity
             style={styles.categoryButton}
             onPress={() =>
-              navigation.navigate("ListaEjercicios", { tipo: "Mis ejercicios" })
+              navigation.navigate("ListaEjercicios", { tipo: "Favoritos" })
             }
           >
             <Ionicons name="heart" size={24} color={colors.primary} />
